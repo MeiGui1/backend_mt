@@ -65,15 +65,19 @@ public class MenuActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.nav_collections:
+                        setTitle("Medien");
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CollectionsFragment()).commit();
                         break;
                     case R.id.nav_pen:
+                        setTitle("Notizen");
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new NotesFragment()).commit();
                         break;
                     case R.id.nav_models:
+                        setTitle("3D-Modelle");
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ModelsFragment()).commit();
                         break;
                     case R.id.nav_person:
+                        setTitle("Benutzer");
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CollectionsFragment()).commit();
                         Toast.makeText(MenuActivity.this, "I am a Person", Toast.LENGTH_SHORT).show();
                         break;
