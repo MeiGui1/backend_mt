@@ -52,7 +52,7 @@ public class MenuActivity extends AppCompatActivity {
 
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ModelsFragment()).commit();
+           getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ModelsFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_models);
         }
 
@@ -74,6 +74,7 @@ public class MenuActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ModelsFragment()).commit();
                         break;
                     case R.id.nav_person:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CollectionsFragment()).commit();
                         Toast.makeText(MenuActivity.this, "I am a Person", Toast.LENGTH_SHORT).show();
                         break;
                 }
