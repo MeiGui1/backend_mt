@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        etUsername = (EditText)findViewById(R.id.etUsername);
+        etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
         tvAttemptsInfo = (TextView) findViewById(R.id.tvAttempts);
         tvAttemptsInfo.setText("No of attempts remaining: " + counter);
@@ -35,17 +35,22 @@ public class MainActivity extends AppCompatActivity {
                 validate(etUsername.getText().toString(), etPassword.getText().toString());
             }
         });
+
+        //jump to Menu for faster testing puroposes
+        Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+        intent.putExtra("usernameKey", "Admin");
+        startActivity(intent);
     }
 
-    private void validate (String username, String password){
-        if(username.equals("Admin") && password.equals("123")){
+    private void validate(String username, String password) {
+        if (username.equals("Admin") && password.equals("123")) {
             Intent intent = new Intent(MainActivity.this, MenuActivity.class);
-            intent.putExtra("usernameKey",etUsername.getText().toString());
+            intent.putExtra("usernameKey", etUsername.getText().toString());
             startActivity(intent);
-        }else{
+        } else {
             counter--;
             tvAttemptsInfo.setText("No of attempts remaining: " + String.valueOf(counter));
-            if (counter == 0){
+            if (counter == 0) {
                 btnLogin.setEnabled(false);
             }
         }
