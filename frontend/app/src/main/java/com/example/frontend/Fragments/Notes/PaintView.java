@@ -1,4 +1,4 @@
-package com.example.frontend.Notes;
+package com.example.frontend.Fragments.Notes;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -14,7 +14,7 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.example.frontend.R;
+import com.example.frontend.Globals;
 
 import java.util.ArrayList;
 
@@ -37,7 +37,9 @@ public class PaintView extends View {
    // private Bitmap mBitmap;
     //private Canvas mCanvas;
     private Paint mBitmapPaint = new Paint(Paint.DITHER_FLAG);
-    private Bitmap mBitmap = Bitmap.createBitmap(200, 500, Bitmap.Config.ARGB_8888);
+    private int fragmentWidth = Globals.getInstance().getFragmentWidth();
+    private int fragmentHeight = Globals.getInstance().getFragmentHeight();
+    private Bitmap mBitmap = Bitmap.createBitmap(fragmentWidth, fragmentHeight, Bitmap.Config.ARGB_8888);
     private Canvas mCanvas = new Canvas(mBitmap);
 
     public PaintView(Context context) {

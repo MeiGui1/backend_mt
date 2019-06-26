@@ -1,8 +1,7 @@
-package com.example.frontend;
+package com.example.frontend.Activities;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -11,9 +10,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
+import android.view.ViewTreeObserver;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.frontend.Fragments.CollectionsFragment;
+import com.example.frontend.Fragments.ModelsFragment;
+import com.example.frontend.Fragments.NotesFragment;
+import com.example.frontend.Globals;
+import com.example.frontend.R;
 
 public class MenuActivity extends AppCompatActivity {
     private Toolbar toolbar;
@@ -55,6 +60,17 @@ public class MenuActivity extends AppCompatActivity {
            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ModelsFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_models);
         }
+
+        ViewTreeObserver vto = findViewById(R.id.fragment_container).getViewTreeObserver();
+        vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            public boolean onPreDraw() {
+                findViewById(R.id.fragment_container).getViewTreeObserver().removeOnPreDrawListener(this);
+                Globals g = Globals.getInstance();
+                g.setFragmentHeight(findViewById(R.id.fragment_container).getMeasuredHeight());
+                g.setFragmentWidth(findViewById(R.id.fragment_container).getMeasuredWidth());
+                return true;
+            }
+        });
 
         tvUsername = (TextView) navigationView.getHeaderView(0).findViewById(R.id.tvUsername);
         tvUsername.setText(username);

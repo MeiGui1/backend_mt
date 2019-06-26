@@ -1,4 +1,4 @@
-package com.example.frontend.Notes;
+package com.example.frontend.Fragments.Notes;
 
 
 import android.graphics.Path;

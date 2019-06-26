@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/design_default_color_primary"
-    tools:context="com.example.frontend.NotesFragment">
+    tools:context="com.example.frontend.Fragments.NotesFragment">
 
-    <com.example.frontend.Notes.PaintView
+    <com.example.frontend.Fragments.Notes.PaintView
         android:id="@+id/paintView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/scrollView2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.75"
+        tools:layout_editor_absoluteY="0dp" />
 
-</RelativeLayout>
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.25"
+        tools:layout_editor_absoluteY="0dp" />
+
+</android.support.constraint.ConstraintLayout>
