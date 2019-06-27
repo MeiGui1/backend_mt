@@ -17,5 +17,9 @@
         android:id="@+id/clear"
         app:showAsAction="never"
         android:title="Clear"/>
+    <item
+        android:id="@+id/save"
+        app:showAsAction="never"
+        android:title="Save"/>
 
 </menu>

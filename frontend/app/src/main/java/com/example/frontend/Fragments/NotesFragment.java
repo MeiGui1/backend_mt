@@ -12,6 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.example.frontend.Fragments.Notes.PaintView;
 import com.example.frontend.R;
@@ -19,6 +22,7 @@ import com.example.frontend.R;
 public class NotesFragment extends Fragment {
 
     private PaintView paintView;
+    private View cView;
 
     @Nullable
     @Override
@@ -29,12 +33,12 @@ public class NotesFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
-
         view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 view.post(new Runnable() {
                     public void run() {
+                        cView = view;
                         paintView = (PaintView) view.findViewById(R.id.paintView);
 
                         DisplayMetrics metrics = new DisplayMetrics();
@@ -45,7 +49,6 @@ public class NotesFragment extends Fragment {
                 });
             }
         });
-
     }
 
     @Override
@@ -68,6 +71,12 @@ public class NotesFragment extends Fragment {
                 return true;
             case R.id.clear:
                 paintView.clear();
+                return true;
+            case R.id.save:
+                LinearLayout linearLayout1 = (LinearLayout) cView.findViewById(R.id.linearLayout);
+                ImageView image = new ImageView(getContext());
+                image.setImageBitmap(paintView.getBitmap());
+                linearLayout1.addView(image);
                 return true;
         }
         return super.onOptionsItemSelected(item);

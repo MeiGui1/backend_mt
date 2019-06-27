@@ -37,9 +37,9 @@ public class PaintView extends View {
    // private Bitmap mBitmap;
     //private Canvas mCanvas;
     private Paint mBitmapPaint = new Paint(Paint.DITHER_FLAG);
-    private int fragmentWidth = Globals.getInstance().getFragmentWidth();
-    private int fragmentHeight = Globals.getInstance().getFragmentHeight();
-    private Bitmap mBitmap = Bitmap.createBitmap(fragmentWidth, fragmentHeight, Bitmap.Config.ARGB_8888);
+    private int paintWidth = Globals.getInstance().getFragmentWidth()/4*3;
+    private int paintHeight = Globals.getInstance().getFragmentHeight();
+    private Bitmap mBitmap = Bitmap.createBitmap(paintWidth, paintHeight, Bitmap.Config.ARGB_8888);
     private Canvas mCanvas = new Canvas(mBitmap);
 
     public PaintView(Context context) {
@@ -159,5 +159,9 @@ public class PaintView extends View {
                 break;
         }
         return true;
+    }
+
+    public Bitmap getBitmap() {
+        return mBitmap;
     }
 }
