@@ -1,5 +1,7 @@
 package com.example.frontend.Fragments;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -75,7 +77,8 @@ public class NotesFragment extends Fragment {
             case R.id.save:
                 LinearLayout linearLayout1 = (LinearLayout) cView.findViewById(R.id.linearLayout);
                 ImageView image = new ImageView(getContext());
-                image.setImageBitmap(paintView.getBitmap());
+                Bitmap saved = paintView.getBitmap();
+                image.setImageBitmap(saved);
                 linearLayout1.addView(image);
                 return true;
         }
