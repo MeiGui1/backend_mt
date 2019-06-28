@@ -16,7 +16,7 @@ public class PatientService {
     private final PatientDao patientDao;
 
     @Autowired
-    public PatientService(@Qualifier("sqlite") PatientDao patientDao) {
+    public PatientService(@Qualifier("fakeDao") PatientDao patientDao) {
         this.patientDao = patientDao;
     }
 
