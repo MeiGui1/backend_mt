@@ -14,8 +14,14 @@ public class FakePatientDataAccessService implements PatientDao {
     private static List<Patient> DB = new ArrayList<>();
 
     @Override
-    public int insertPatient(UUID id, Patient patient) {
+    public int insertPatient(int id, Patient patient) {
         DB.add(new Patient(id, patient.getShortname(), patient.getGender()));
+        return 1;
+    }
+
+    @Override
+    public int insertPatient(Patient patient) {
+        DB.add(new Patient(100,patient.getShortname(), patient.getGender()));
         return 1;
     }
 
@@ -25,14 +31,14 @@ public class FakePatientDataAccessService implements PatientDao {
     }
 
     @Override
-    public Optional<Patient> selectPatientById(UUID id) {
+    public Optional<Patient> selectPatientById(int id) {
         return DB.stream()
-                .filter(patient -> patient.getId().equals(id))
+                .filter(patient -> patient.getId()==id)
                 .findFirst();
     }
 
     @Override
-    public int deletePatientById(UUID id) {
+    public int deletePatientById(int id) {
         Optional<Patient> personMaybe = selectPatientById(id);
         if(personMaybe.isEmpty()){
             return 0;
@@ -42,7 +48,7 @@ public class FakePatientDataAccessService implements PatientDao {
     }
 
     @Override
-    public int updatePatientById(UUID id, Patient newPatient) {
+    public int updatePatientById(int id, Patient newPatient) {
         return selectPatientById(id)
                 .map(patient -> {
                     int indexOfPersonToUpdate = DB.indexOf(patient);

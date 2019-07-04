@@ -7,20 +7,16 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface PatientDao {
-    int insertPatient(UUID id, Patient patient);
+    int insertPatient(int id, Patient patient);
 
-    default int insertPatient(Patient patient){
-        UUID id = UUID.randomUUID();
-        return insertPatient(id, patient);
-    }
+    int insertPatient(Patient patient);
 
     List<Patient> selectAllPatients();
 
-    Optional<Patient> selectPatientById(UUID id);
+    Optional<Patient> selectPatientById(int id);
 
-    int deletePatientById(UUID id);
+    int deletePatientById(int id);
 
-    int updatePatientById(UUID id, Patient patient);
-
+    int updatePatientById(int id, Patient patient);
 
 }

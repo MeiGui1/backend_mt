@@ -16,7 +16,7 @@ public class PatientService {
     private final PatientDao patientDao;
 
     @Autowired
-    public PatientService(@Qualifier("fakeDao") PatientDao patientDao) {
+    public PatientService(@Qualifier("postgres") PatientDao patientDao) {
         this.patientDao = patientDao;
     }
 
@@ -28,15 +28,15 @@ public class PatientService {
         return patientDao.selectAllPatients();
     }
 
-    public Optional<Patient> getPatientById(UUID id){
+    public Optional<Patient> getPatientById(int id){
         return patientDao.selectPatientById(id);
     }
 
-    public int deletePatient(UUID id){
+    public int deletePatient(int id){
         return patientDao.deletePatientById(id);
     }
 
-    public int updatePatient(UUID id, Patient newPatient){
+    public int updatePatient(int id, Patient newPatient){
         return patientDao.updatePatientById(id, newPatient);
     }
 

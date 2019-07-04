@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+
+//Client uses these functions
+
 @RequestMapping("/api/v1/patient")
 @RestController
 public class PatientController {
@@ -33,18 +36,18 @@ public class PatientController {
     }
 
     @GetMapping(path = "{id}")
-    public Patient getPatientById(@PathVariable("id") UUID id){
+    public Patient getPatientById(@PathVariable("id") int id){
         return personService.getPatientById(id)
                 .orElse(null);
     }
 
     @DeleteMapping(path = "{id}")
-    public void deletePatientByID(@PathVariable("id") UUID id){
+    public void deletePatientByID(@PathVariable("id") int id){
         personService.deletePatient(id);
     }
 
     @PutMapping(path = "{id}")
-    public void updatePatient(@PathVariable("id") UUID id, @Valid @NotNull @RequestBody Patient patientToUpdate){
+    public void updatePatient(@PathVariable("id") int id, @Valid @NotNull @RequestBody Patient patientToUpdate){
         personService.updatePatient(id, patientToUpdate);
     }
 }

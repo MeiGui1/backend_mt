@@ -1,24 +1,23 @@
 package com.masterthesis.ConsApp.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.validation.constraints.NotBlank;
-import java.util.UUID;
+
 
 public class Patient {
-    private final UUID id;
+    private final int id;
     @NotBlank
     private final String shortname;
     private final String gender;
 
 
-    public Patient(@JsonProperty("id") UUID id, @JsonProperty("shortname") String shortname, @JsonProperty("gender") String gender) {
+    public Patient(@JsonProperty("id") int id, @JsonProperty("shortname") String shortname, @JsonProperty("gender") String gender) {
         this.id = id;
         this.shortname = shortname;
         this.gender = gender;
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
