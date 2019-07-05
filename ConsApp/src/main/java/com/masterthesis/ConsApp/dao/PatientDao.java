@@ -13,7 +13,7 @@ public interface PatientDao {
 
     List<Patient> selectAllPatients();
 
-    Optional<Patient> selectPatientById(int id);
+    Patient selectPatientById(int id);
 
     int deletePatientById(int id);
 

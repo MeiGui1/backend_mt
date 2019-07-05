@@ -1,6 +1,7 @@
 package com.masterthesis.ConsApp.api;
 
 import com.masterthesis.ConsApp.model.Patient;
+import com.masterthesis.ConsApp.service.DrugService;
 import com.masterthesis.ConsApp.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,8 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 
 //Client uses these functions
@@ -37,8 +36,7 @@ public class PatientController {
 
     @GetMapping(path = "{id}")
     public Patient getPatientById(@PathVariable("id") int id){
-        return personService.getPatientById(id)
-                .orElse(null);
+        return personService.getPatientById(id);
     }
 
     @DeleteMapping(path = "{id}")

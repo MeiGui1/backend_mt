@@ -2,13 +2,14 @@ package com.masterthesis.ConsApp.dao;
 
 import com.masterthesis.ConsApp.model.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
-@Repository("postgres")
+@Repository("patientRepository")
 public class PatientDataAccessService implements PatientDao{
 
     private final JdbcTemplate jdbcTemplate;
@@ -30,7 +31,7 @@ public class PatientDataAccessService implements PatientDao{
 
     @Override
     public List<Patient> selectAllPatients() {
-        final String sql = "SELECT id, shortname, gender FROM patient";
+        final String sql = "SELECT id, shortname, gender FROM Patient";
         List<Patient> allPatients = jdbcTemplate.query(sql, (resultSet, i) -> {
             int id = resultSet.getInt("id");
             String shortname = resultSet.getString("shortname");
@@ -41,8 +42,8 @@ public class PatientDataAccessService implements PatientDao{
     }
 
     @Override
-    public Optional<Patient> selectPatientById(int id) {
-        return Optional.empty();
+    public Patient selectPatientById(int id) {
+        return null;
     }
 
     @Override

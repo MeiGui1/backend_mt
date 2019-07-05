@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class PatientService {
@@ -16,7 +15,7 @@ public class PatientService {
     private final PatientDao patientDao;
 
     @Autowired
-    public PatientService(@Qualifier("postgres") PatientDao patientDao) {
+    public PatientService(@Qualifier("patientRepository") PatientDao patientDao) {
         this.patientDao = patientDao;
     }
 
@@ -28,7 +27,7 @@ public class PatientService {
         return patientDao.selectAllPatients();
     }
 
-    public Optional<Patient> getPatientById(int id){
+    public Patient getPatientById(int id){
         return patientDao.selectPatientById(id);
     }
 
