@@ -4,8 +4,11 @@ import com.masterthesis.ConsApp.model.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +29,11 @@ public class PatientDataAccessService implements PatientDao{
 
     @Override
     public int insertPatient(Patient patient) {
-        return 0;
+        final String sql = "INSERT INTO Patient (shortname, gender) VALUES (?, ?)";
+        return jdbcTemplate.update(
+                sql,
+                patient.getShortname(), patient.getGender()
+        );
     }
 
     @Override
@@ -43,7 +50,20 @@ public class PatientDataAccessService implements PatientDao{
 
     @Override
     public Patient selectPatientById(int id) {
-        return null;
+        String sql = "SELECT * FROM Patient WHERE id = ?";
+
+        return (Patient) jdbcTemplate.queryForObject(
+                sql,
+                new Object[] {id},
+                new RowMapper<Patient>() {
+                    @Override
+                    public Patient mapRow(ResultSet rs, int rowNumber) throws SQLException {
+                        Patient selectedPatient = new Patient(rs.getInt("id"),
+                                rs.getString("shortname"),
+                                rs.getString("gender"));
+                        return selectedPatient;
+                    }
+                });
     }
 
     @Override
