@@ -68,11 +68,15 @@ public class PatientDataAccessService implements PatientDao{
 
     @Override
     public int deletePatientById(int id) {
-        return 0;
+        String sql = "DELETE FROM Patient WHERE id = ?";
+        Object[] args = new Object[] {id};
+        return jdbcTemplate.update(sql, args);
     }
 
     @Override
     public int updatePatientById(int id, Patient patient) {
-        return 0;
+        String sql = "UPDATE Patient SET shortname = ?, gender = ? WHERE id = ?";
+
+        return jdbcTemplate.update(sql, patient.getShortname(), patient.getGender(), id);
     }
 }
