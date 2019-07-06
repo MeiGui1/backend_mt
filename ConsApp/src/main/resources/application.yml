@@ -1,6 +1,12 @@
+#app:
+#  datasource:
+#    jdbc-url: jdbc:postgresql://localhost:2345/consappdb
+#    username: postgres
+#    password: meigui123
+#    pool-size: 30
 app:
   datasource:
-    jdbc-url: jdbc:postgresql://localhost:2345/consappdb
-    username: postgres
-    password: meigui123
+    jdbc-url: ${JDBC_DATABASE_URL}
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
     pool-size: 30
