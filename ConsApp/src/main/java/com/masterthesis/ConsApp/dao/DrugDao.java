@@ -14,7 +14,7 @@ public interface DrugDao {
     int insertDrugType(int id, DrugType drugType);
     int insertDrugType(DrugType drugType);
     List<DrugType> selectAllDrugTypes();
-    Optional<DrugType> selectDrugTypeById(int id);
+    DrugType selectDrugTypeById(int id);
     int deleteDrugTypeById(int id);
     int updateDrugTypeById(int id, DrugType drugType);
 

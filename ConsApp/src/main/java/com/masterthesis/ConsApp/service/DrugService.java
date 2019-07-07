@@ -31,7 +31,7 @@ public class DrugService {
         return drugDao.selectAllDrugTypes();
     }
 
-    public Optional<DrugType> getDrugTypeById(int id){
+    public DrugType getDrugTypeById(int id){
         return drugDao.selectDrugTypeById(id);
     }
 

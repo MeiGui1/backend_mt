@@ -34,10 +34,9 @@ public class DrugController {
         return drugService.getAllDrugTypes();
     }
 
-    @GetMapping(path = "{id}")
+    @GetMapping(path = "/drugtype/{id}")
     public DrugType getDrugTypeById(@PathVariable("id") int id){
-        return drugService.getDrugTypeById(id)
-                .orElse(null);
+        return drugService.getDrugTypeById(id);
     }
 
     @DeleteMapping(path = "{id}")

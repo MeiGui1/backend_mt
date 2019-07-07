@@ -5,8 +5,11 @@ import com.masterthesis.ConsApp.model.Patient;
 import com.masterthesis.ConsApp.model.PatientDrug;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,8 +46,21 @@ public class DrugDataAccessService implements DrugDao{
     }
 
     @Override
-    public Optional<DrugType> selectDrugTypeById(int id) {
-        return Optional.empty();
+    public DrugType selectDrugTypeById(int id) {
+        String sql = "SELECT * FROM DrugType WHERE id = ?";
+
+        return (DrugType) jdbcTemplate.queryForObject(
+                sql,
+                new Object[] {id},
+                new RowMapper<DrugType>() {
+                    @Override
+                    public DrugType mapRow(ResultSet rs, int rowNumber) throws SQLException {
+                        DrugType selectedDrugType = new DrugType(rs.getInt("id"),
+                                rs.getString("name"),
+                                rs.getString("description"));
+                        return selectedDrugType;
+                    }
+                });
     }
 
     @Override
