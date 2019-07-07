@@ -29,12 +29,12 @@ public class DrugController {
         drugService.addDrugType(drugType);
     }
 
-    @GetMapping
+    @GetMapping(path = "/drugtype")
     public List<DrugType> getAllDrugTypes(){
         return drugService.getAllDrugTypes();
     }
 
-    @GetMapping(path = "{id}")
+    @GetMapping(path = "/drugtype/{id}")
     public DrugType getDrugTypeById(@PathVariable("id") int id){
         return drugService.getDrugTypeById(id)
                 .orElse(null);
