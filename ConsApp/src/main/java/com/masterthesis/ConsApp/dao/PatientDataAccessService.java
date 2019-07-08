@@ -38,7 +38,7 @@ public class PatientDataAccessService implements PatientDao{
 
     @Override
     public List<Patient> selectAllPatients() {
-        final String sql = "SELECT id, shortname, gender FROM Patient";
+        final String sql = "SELECT id, shortname, gender FROM Patient ORDER BY shortname";
         List<Patient> allPatients = jdbcTemplate.query(sql, (resultSet, i) -> {
             int id = resultSet.getInt("id");
             String shortname = resultSet.getString("shortname");
