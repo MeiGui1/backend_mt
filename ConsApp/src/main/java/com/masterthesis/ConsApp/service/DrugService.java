@@ -49,11 +49,15 @@ public class DrugService {
         return drugDao.insertPatientDrug(patientDrug);
     }
 
+    public List<PatientDrug> getAllPatientDrugs(){
+        return drugDao.selectAllPatientDrugs();
+    }
+
     public List<PatientDrug> getAllDrugsOfPatient(int patient_id){
         return drugDao.selectAllDrugsOfPatient(patient_id);
     }
 
-    public Optional<PatientDrug> getPatientDrugByIds(int patient_id, int drugtype_id){
+    public PatientDrug getPatientDrugByIds(int patient_id, int drugtype_id){
         return drugDao.selectPatientDrugByIds(patient_id, drugtype_id);
     }
 

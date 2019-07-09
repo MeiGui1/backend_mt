@@ -76,7 +76,6 @@ public class PatientDataAccessService implements PatientDao{
     @Override
     public int updatePatientById(int id, Patient patient) {
         String sql = "UPDATE Patient SET shortname = ?, gender = ? WHERE id = ?";
-
         return jdbcTemplate.update(sql, patient.getShortname(), patient.getGender(), id);
     }
 }

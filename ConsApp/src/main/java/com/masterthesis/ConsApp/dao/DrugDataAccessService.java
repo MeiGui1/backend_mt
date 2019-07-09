@@ -23,6 +23,8 @@ public class DrugDataAccessService implements DrugDao{
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    //DrugType related
+
     @Override
     public int insertDrugType(int id, DrugType drugType) {
         return 0;
@@ -30,12 +32,16 @@ public class DrugDataAccessService implements DrugDao{
 
     @Override
     public int insertDrugType(DrugType drugType) {
-        return 0;
+        final String sql = "INSERT INTO DrugType (name, description) VALUES (?, ?)";
+        return jdbcTemplate.update(
+                sql,
+                drugType.getName(), drugType.getDescription()
+        );
     }
 
     @Override
     public List<DrugType> selectAllDrugTypes() {
-        final String sql = "SELECT id, name, description FROM DrugType";
+        final String sql = "SELECT id, name, description FROM DrugType ORDER BY name";
         List<DrugType> allDrugTypes = jdbcTemplate.query(sql, (resultSet, i) -> {
             int id = resultSet.getInt("id");
             String name = resultSet.getString("name");
@@ -65,13 +71,20 @@ public class DrugDataAccessService implements DrugDao{
 
     @Override
     public int deleteDrugTypeById(int id) {
-        return 0;
+        String sql = "DELETE FROM DrugType WHERE id = ?";
+        Object[] args = new Object[] {id};
+        return jdbcTemplate.update(sql, args);
     }
 
     @Override
     public int updateDrugTypeById(int id, DrugType drugType) {
-        return 0;
+        String sql = "UPDATE DrugType SET name = ?, description = ? WHERE id = ?";
+        return jdbcTemplate.update(sql, drugType.getName(), drugType.getDescription(), id);
     }
+
+
+
+    //PatientDrug related
 
     @Override
     public int insertPatientDrug(int id, PatientDrug patientDrug) {
@@ -80,26 +93,67 @@ public class DrugDataAccessService implements DrugDao{
 
     @Override
     public int insertPatientDrug(PatientDrug patientDrug) {
-        return 0;
+        final String sql = "INSERT INTO PatientDrug (patient_id, drugtype_id, amount, dosis) VALUES (?, ?, ?, ?)";
+        return jdbcTemplate.update(
+                sql,
+                patientDrug.getPatient_id(), patientDrug.getDrugtype_id(), patientDrug.getAmount(), patientDrug.getDosis()
+        );
+    }
+
+    @Override
+    public List<PatientDrug> selectAllPatientDrugs() {
+        final String sql = "SELECT * FROM PatientDrug ORDER BY patient_id";
+        List<PatientDrug> allPatientDrugs = jdbcTemplate.query(sql, (resultSet, i) -> {
+            int patient_id = resultSet.getInt("patient_id");
+            int drugtype_id = resultSet.getInt("drugtype_id");
+            String amount = resultSet.getString("amount");
+            String dosis =  resultSet.getString("dosis");
+            return new PatientDrug(patient_id, drugtype_id, amount, dosis);
+        });
+        return allPatientDrugs;
     }
 
     @Override
     public List<PatientDrug> selectAllDrugsOfPatient(int patient_id) {
-        return null;
+        final String sql = "SELECT * FROM PatientDrug WHERE patient_id = "+ patient_id;
+        List<PatientDrug> allDrugsOfPatient = jdbcTemplate.query(sql, (resultSet, i) -> {
+            int drugtype_id = resultSet.getInt("drugtype_id");
+            String amount = resultSet.getString("amount");
+            String dosis =  resultSet.getString("dosis");
+            return new PatientDrug(patient_id, drugtype_id, amount, dosis);
+        });
+        return allDrugsOfPatient;
     }
 
     @Override
-    public Optional<PatientDrug> selectPatientDrugByIds(int patient_id, int drugtype_id) {
-        return Optional.empty();
+    public PatientDrug selectPatientDrugByIds(int patient_id, int drugtype_id) {
+        final String sql = "SELECT * FROM PatientDrug WHERE patient_id = ? AND drugtype_id = ?";
+        return (PatientDrug) jdbcTemplate.queryForObject(
+                sql,
+                new Object[] {patient_id, drugtype_id},
+                new RowMapper<PatientDrug>() {
+                    @Override
+                    public PatientDrug mapRow(ResultSet rs, int rowNumber) throws SQLException {
+                        PatientDrug selectedPatientDrug = new PatientDrug(
+                                rs.getInt("patient_id"),
+                                rs.getInt("drugtype_id"),
+                                rs.getString("amount"),
+                                rs.getString("dosis"));
+                        return selectedPatientDrug;
+                    }
+                });
     }
 
     @Override
     public int deleteDrugOfPatient(int patient_id, int drugtype_id) {
-        return 0;
+        String sql = "DELETE FROM PatientDrug WHERE patient_id = ? AND drugtype_id = ?";
+        Object[] args = new Object[] {patient_id, drugtype_id};
+        return jdbcTemplate.update(sql, args);
     }
 
     @Override
     public int updatePatientDrugByIds(int patient_id, int drugtype_id, PatientDrug patientDrug) {
-        return 0;
+        String sql = "UPDATE PatientDrug SET amount = ?, dosis = ? WHERE patient_id = ? AND drugtype_id = ?";
+        return jdbcTemplate.update(sql, patientDrug.getAmount(), patientDrug.getDosis(), patient_id, drugtype_id);
     }
 }
