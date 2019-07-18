@@ -1,5 +1,6 @@
 package com.masterthesis.ConsApp.dao;
 
+import com.masterthesis.ConsApp.model.ExercisePhoto;
 import com.masterthesis.ConsApp.model.ExerciseType;
 import com.masterthesis.ConsApp.model.PatientExercise;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,7 +75,7 @@ public class ExerciseDataAccessService implements ExerciseDao {
     }
 
     @Override
-    public int updateExerciseType(String title, ExerciseType exerciseType) {
+    public int updateExerciseTypeByTitle(String title, ExerciseType exerciseType) {
         String sql = "UPDATE ExerciseType SET explanation = ? WHERE title = ?";
         return jdbcTemplate.update(sql, exerciseType.getExplanation(), title);
     }
@@ -116,6 +117,49 @@ public class ExerciseDataAccessService implements ExerciseDao {
     public int deleteExerciseOfPatient(int patient_id, String exercisetype_title) {
         String sql = "DELETE FROM PatientExercise WHERE patient_id = ? AND exercisetype_title = ?";
         Object[] args = new Object[]{patient_id, exercisetype_title};
+        return jdbcTemplate.update(sql, args);
+    }
+
+
+
+    //ExercisePhoto related
+
+    @Override
+    public int insertExercisePhoto(ExercisePhoto exercisePhoto) {
+        final String sql = "INSERT INTO ExercisePhoto (patient_id, photo) VALUES (?, ?)";
+        return jdbcTemplate.update(
+                sql,
+                exercisePhoto.getPatient_id(), exercisePhoto.getPhoto()
+        );
+    }
+
+    @Override
+    public List<ExercisePhoto> selectAllExercisePhotos() {
+        final String sql = "SELECT * FROM ExercisePhoto ORDER BY patient_id";
+        List<ExercisePhoto> allExercisePhotos = jdbcTemplate.query(sql, (resultSet, i) -> {
+            int id = resultSet.getInt("id");
+            int patient_id = resultSet.getInt("patient_id");
+            byte[] photo = resultSet.getBytes("photo");
+            return new ExercisePhoto(id, patient_id, photo);
+        });
+        return allExercisePhotos;
+    }
+
+    @Override
+    public List<ExercisePhoto> selectAllExercisePhotosOfPatient(int patient_id) {
+        final String sql = "SELECT * FROM ExercisePhoto WHERE patient_id = " + patient_id;
+        List<ExercisePhoto> allExercisesPhotosOfPatient = jdbcTemplate.query(sql, (resultSet, i) -> {
+            int id = resultSet.getInt("id");
+            byte[] photo = resultSet.getBytes("photo");
+            return new ExercisePhoto(id, patient_id, photo);
+        });
+        return allExercisesPhotosOfPatient;
+    }
+
+    @Override
+    public int deleteExercisePhotoById(int id) {
+        String sql = "DELETE FROM ExercisePhoto WHERE id = ?";
+        Object[] args = new Object[]{id};
         return jdbcTemplate.update(sql, args);
     }
 }
