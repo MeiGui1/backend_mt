@@ -15,7 +15,8 @@ CREATE TABLE PatientExercise (
 CREATE TABLE ExercisePhoto (
     id serial PRIMARY KEY,
     patient_id int NOT NULL,
-    photo bytea NOT NULL
+    photo bytea NOT NULL,
+    FOREIGN KEY (patient_id) REFERENCES Patient(id)
 );
 
 
