@@ -1,5 +1,5 @@
 CREATE TABLE Note (
-    id int PRIMARY KEY,
+    id serial PRIMARY KEY,
     patient_id int NOT NULL,
     note_bytes bytea NOT NULL,
     selected boolean,
