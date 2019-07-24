@@ -28,4 +28,5 @@ public interface ExerciseDao {
     List<ExercisePhoto> selectAllExercisePhotos();
     List<ExercisePhoto> selectAllExercisePhotosOfPatient(int patient_id);
     int deleteExercisePhotoById(int id);
+    int selectLastPhotoId();
 }

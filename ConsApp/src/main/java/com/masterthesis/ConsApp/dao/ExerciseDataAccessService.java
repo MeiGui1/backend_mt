@@ -162,4 +162,11 @@ public class ExerciseDataAccessService implements ExerciseDao {
         Object[] args = new Object[]{id};
         return jdbcTemplate.update(sql, args);
     }
+
+    @Override
+    public int selectLastPhotoId() {
+        String sql = "SELECT max(id) FROM ExercisePhoto";
+        int maxId = jdbcTemplate.queryForObject(sql, Integer.class);
+        return maxId;
+    }
 }

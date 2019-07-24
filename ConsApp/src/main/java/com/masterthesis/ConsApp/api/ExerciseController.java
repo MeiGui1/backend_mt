@@ -103,4 +103,9 @@ public class ExerciseController {
         exerciseService.deleteExercisePhoto(id);
     }
 
+    @GetMapping(path = "/exercisephoto_last_id")
+    public int getLastPhotoId(){
+        return exerciseService.getLastId();
+    }
+
 }

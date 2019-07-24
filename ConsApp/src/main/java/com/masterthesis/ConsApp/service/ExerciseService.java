@@ -86,4 +86,8 @@ public class ExerciseService {
     public int deleteExercisePhoto(int id) {
         return exerciseDao.deleteExercisePhotoById(id);
     }
+
+    public int getLastId(){
+        return  exerciseDao.selectLastPhotoId();
+    }
 }
