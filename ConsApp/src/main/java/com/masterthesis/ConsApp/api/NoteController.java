@@ -57,4 +57,9 @@ public class NoteController {
     public void updateNote(@PathVariable("id") int id, @Valid @NotNull @RequestBody Note note){
         noteService.updateNote(id, note);
     }
+
+    @GetMapping(path = "/note_last_id")
+    public int getLastNoteId(){
+        return noteService.getLastNoteId();
+    }
 }

@@ -98,7 +98,7 @@ public class ExerciseController {
         return exerciseService.getAllExercisePhotosOfPatient(id);
     }
 
-    @DeleteMapping(path = "/exercisephoto/{id}}")
+    @DeleteMapping(path = "/exercisephoto/{id}")
     public void deleteExercisePhoto(@PathVariable("id") int id){
         exerciseService.deleteExercisePhoto(id);
     }

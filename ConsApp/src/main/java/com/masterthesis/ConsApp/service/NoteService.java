@@ -46,4 +46,8 @@ public class NoteService {
     public int updateNote(int id, Note note) {
         return noteDao.updateNoteById(id, note);
     }
+
+    public int getLastNoteId(){
+        return noteDao.selectLastNoteId();
+    }
 }

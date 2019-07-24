@@ -94,4 +94,11 @@ public class NoteDataAccessService implements NoteDao {
         String sql = "UPDATE Note SET selected = ? WHERE id = ?";
         return jdbcTemplate.update(sql, note.isSelected(), id);
     }
+
+    @Override
+    public int selectLastNoteId() {
+        String sql = "SELECT max(id) FROM Note";
+        int maxId = jdbcTemplate.queryForObject(sql, Integer.class);
+        return maxId;
+    }
 }
