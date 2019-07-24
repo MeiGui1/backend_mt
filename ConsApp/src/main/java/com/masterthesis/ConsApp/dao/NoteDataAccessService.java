@@ -43,7 +43,7 @@ public class NoteDataAccessService implements NoteDao {
 
     @Override
     public List<Note> selectAllNotesOfPatient(int patient_id) {
-        final String sql = "SELECT * FROM Note WHERE patient_id = "+ patient_id;
+        final String sql = "SELECT * FROM Note WHERE patient_id = "+ patient_id + " ORDER BY id";
         List<Note> allNotesOfPatient = jdbcTemplate.query(sql, (resultSet, i) -> {
             int id = resultSet.getInt("id");
             byte[] note_bytes = resultSet.getBytes("note_bytes");
@@ -55,7 +55,7 @@ public class NoteDataAccessService implements NoteDao {
 
     @Override
     public List<Note> selectSelectedNotesOfPatient(int patient_id) {
-        final String sql = "SELECT * FROM Note WHERE selected AND patient_id = "+ patient_id;
+        final String sql = "SELECT * FROM Note WHERE selected AND patient_id = "+ patient_id + " ORDER BY id";
         List<Note> allSelectedNotesOfPatient = jdbcTemplate.query(sql, (resultSet, i) -> {
             int id = resultSet.getInt("id");
             byte[] note_bytes = resultSet.getBytes("note_bytes");
