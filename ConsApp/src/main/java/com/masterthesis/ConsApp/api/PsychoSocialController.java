@@ -27,12 +27,12 @@ public class PsychoSocialController {
         this.psychoSocialService = psychoSocialService;
     }
 
-    @PostMapping
+    @PostMapping(path = "/before")
     public void addPsychoSocialBefore(@RequestBody PsychoSocialBefore psychoSocialBefore){
         psychoSocialService.addPsychoSocialBefore(psychoSocialBefore);
     }
 
-    @GetMapping
+    @GetMapping(path = "/before")
     public List<PsychoSocialBefore> getAllPsychoSocialBefores(){
         return psychoSocialService.getAllPsychoSocialBefores();
     }
@@ -55,12 +55,12 @@ public class PsychoSocialController {
 
 
 
-    @PostMapping
+    @PostMapping(path = "/after")
     public void addPsychoSocialAfter(@RequestBody PsychoSocialAfter psychoSocialAfter){
         psychoSocialService.addPsychoSocialAfter(psychoSocialAfter);
     }
 
-    @GetMapping
+    @GetMapping(path = "/after")
     public List<PsychoSocialAfter> getAllPsychoSocialAfters(){
         return psychoSocialService.getAllPsychoSocialAfters();
     }
@@ -82,12 +82,12 @@ public class PsychoSocialController {
 
 
 
-    @PostMapping
+    @PostMapping (path = "/reason")
     public void addImprovementReason(@RequestBody ImprovementReason improvementReason){
         psychoSocialService.addImprovementReason(improvementReason);
     }
 
-    @GetMapping
+    @GetMapping(path = "/reason")
     public List<ImprovementReason> getAllImprovementReasons(){
         return psychoSocialService.getAllImprovementReasons();
     }
