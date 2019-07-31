@@ -4,6 +4,7 @@ import com.masterthesis.ConsApp.model.ImprovementReason;
 import com.masterthesis.ConsApp.model.PsychoSocialAfter;
 import com.masterthesis.ConsApp.model.PsychoSocialBefore;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -60,15 +61,13 @@ public class PsychoSocialAccessService implements PsychoSocialDao {
     public PsychoSocialBefore selectPsychoSocialBeforeByPatientId(int patient_id) {
         String sql = "SELECT * FROM PsychoSocialBefore WHERE patient_id = ?";
 
-        return (PsychoSocialBefore) jdbcTemplate.queryForObject(
-                sql,
-                new Object[] {patient_id},
-                new RowMapper<PsychoSocialBefore>() {
-                    @Override
-                    public PsychoSocialBefore mapRow(ResultSet rs, int rowNumber) throws SQLException {
-                        if (!rs.isBeforeFirst()) {
-                            return null;
-                        } else {
+        try {
+            PsychoSocialBefore selectedPsBefore = jdbcTemplate.queryForObject(
+                    sql,
+                    new Object[] {patient_id},
+                    new RowMapper<PsychoSocialBefore>() {
+                        @Override
+                        public PsychoSocialBefore mapRow(ResultSet rs, int rowNumber) throws SQLException {
                             PsychoSocialBefore selectedPsBefore = new PsychoSocialBefore(
                                     patient_id,
                                     rs.getInt("pain_xpos"),
@@ -84,8 +83,11 @@ public class PsychoSocialAccessService implements PsychoSocialDao {
                             );
                             return selectedPsBefore;
                         }
-                    }
-                });
+                    });
+            return selectedPsBefore;
+        }catch (EmptyResultDataAccessException e){
+            return null;
+        }
     }
 
     @Override
@@ -144,15 +146,13 @@ public class PsychoSocialAccessService implements PsychoSocialDao {
     public PsychoSocialAfter selectPsychoSocialAfterByPatientId(int patient_id) {
         String sql = "SELECT * FROM PsychoSocialAfter WHERE patient_id = ?";
 
-        return (PsychoSocialAfter) jdbcTemplate.queryForObject(
-                sql,
-                new Object[] {patient_id},
-                new RowMapper<PsychoSocialAfter>() {
-                    @Override
-                    public PsychoSocialAfter mapRow(ResultSet rs, int rowNumber) throws SQLException {
-                        if (!rs.isBeforeFirst() ) {
-                            return null;
-                        } else {
+        try {
+            PsychoSocialAfter selectedPsAfter = jdbcTemplate.queryForObject(
+                    sql,
+                    new Object[] {patient_id},
+                    new RowMapper<PsychoSocialAfter>() {
+                        @Override
+                        public PsychoSocialAfter mapRow(ResultSet rs, int rowNumber) throws SQLException {
                             PsychoSocialAfter selectedPsAfter = new PsychoSocialAfter(
                                     patient_id,
                                     rs.getInt("pain_xpos"),
@@ -168,8 +168,11 @@ public class PsychoSocialAccessService implements PsychoSocialDao {
                             );
                             return selectedPsAfter;
                         }
-                    }
-                });
+                    });
+            return selectedPsAfter;
+        }catch (EmptyResultDataAccessException e){
+            return null;
+        }
     }
 
     @Override
@@ -222,16 +225,13 @@ public class PsychoSocialAccessService implements PsychoSocialDao {
     @Override
     public ImprovementReason selectImprovementReasonByPatientId(int patient_id) {
         String sql = "SELECT * FROM ImprovementReason WHERE patient_id = ?";
-
-        return (ImprovementReason) jdbcTemplate.queryForObject(
-                sql,
-                new Object[] {patient_id},
-                new RowMapper<ImprovementReason>() {
-                    @Override
-                    public ImprovementReason mapRow(ResultSet rs, int rowNumber) throws SQLException {
-                        if (!rs.isBeforeFirst() ) {
-                            return null;
-                        } else{
+        try {
+            ImprovementReason selectedImprovementReason = jdbcTemplate.queryForObject(
+                    sql,
+                    new Object[]{patient_id},
+                    new RowMapper<ImprovementReason>() {
+                        @Override
+                        public ImprovementReason mapRow(ResultSet rs, int rowNumber) throws SQLException {
                             ImprovementReason selectedImprovementReason = new ImprovementReason(
                                     patient_id,
                                     rs.getBoolean("drugs"),
@@ -242,8 +242,11 @@ public class PsychoSocialAccessService implements PsychoSocialDao {
                             );
                             return selectedImprovementReason;
                         }
-                    }
-                });
+                    });
+            return selectedImprovementReason;
+        } catch (EmptyResultDataAccessException e){
+            return null;
+        }
     }
 
     @Override
