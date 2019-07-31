@@ -16,6 +16,7 @@ public interface PsychoSocialDao {
     PsychoSocialBefore selectPsychoSocialBeforeByPatientId(int patient_id);
     int deletePsychoSocialBeforeByPatientId(int patient_id);
     int updatePsychoSocialBeforeByPatientId(int patient_id, PsychoSocialBefore psychoSocialBefore);
+    boolean existsPsychoScialBefore(int patient_id);
 
 
     /*PsychoSocialAfter table related functions*/
@@ -25,6 +26,7 @@ public interface PsychoSocialDao {
     PsychoSocialAfter selectPsychoSocialAfterByPatientId(int patient_id);
     int deletePsychoSocialAfterByPatientId(int patient_id);
     int updatePsychoSocialAfterByPatientId(int patient_id, PsychoSocialAfter psychoSocialAfter);
+    boolean existsPsychoScialAfter(int patient_id);
 
 
     /*ImprovementReason table related functions*/
@@ -33,5 +35,6 @@ public interface PsychoSocialDao {
     ImprovementReason selectImprovementReasonByPatientId(int patient_id);
     int deleteImprovementReasonByPatientId(int patient_id);
     int updateImprovementReasonByPatientId(int patient_id, ImprovementReason improvementReason);
+    boolean existsImprovementReason(int patient_id);
 
 }

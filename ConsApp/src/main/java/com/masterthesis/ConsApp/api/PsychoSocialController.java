@@ -37,6 +37,11 @@ public class PsychoSocialController {
         return psychoSocialService.getAllPsychoSocialBefores();
     }
 
+    @GetMapping(path = "/before/exists/{patient_id}")
+    public boolean existsPsychoSocialBefore(@PathVariable("patient_id") int patient_id){
+        return psychoSocialService.existsPsychoSocialBefore(patient_id);
+    }
+
     @GetMapping(path = "/before/{patient_id}")
     public PsychoSocialBefore getPsychoSocialBeforeById(@PathVariable("patient_id") int patient_id){
         return psychoSocialService.getPsychoSocialBeforeById(patient_id);
@@ -65,6 +70,11 @@ public class PsychoSocialController {
         return psychoSocialService.getAllPsychoSocialAfters();
     }
 
+    @GetMapping(path = "/after/exists/{patient_id}")
+    public boolean existsPsychoSocialAfter(@PathVariable("patient_id") int patient_id){
+        return psychoSocialService.existsPsychoSocialAfter(patient_id);
+    }
+
     @GetMapping(path = "/after/{patient_id}")
     public PsychoSocialAfter getPsychoSocialAfterById(@PathVariable("patient_id") int patient_id){
         return psychoSocialService.getPsychoSocialAfterById(patient_id);
@@ -90,6 +100,11 @@ public class PsychoSocialController {
     @GetMapping(path = "/reason")
     public List<ImprovementReason> getAllImprovementReasons(){
         return psychoSocialService.getAllImprovementReasons();
+    }
+
+    @GetMapping(path = "/reason/exists/{patient_id}")
+    public boolean existsImprovementReason(@PathVariable("patient_id") int patient_id){
+        return psychoSocialService.existsImprovementReason(patient_id);
     }
 
     @GetMapping(path = "/reason/{patient_id}")

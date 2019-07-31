@@ -109,6 +109,13 @@ public class PsychoSocialAccessService implements PsychoSocialDao {
     }
 
     @Override
+    public boolean existsPsychoScialBefore(int patient_id) {
+        String sql = "SELECT COUNT(*) FROM PsychoSocialBefore WHERE patient_id = ?";
+        Integer count = jdbcTemplate.queryForObject(sql, Integer.class, patient_id);
+        return count != null && count > 0;
+    }
+
+    @Override
     public int insertPsychoSocialAfter(PsychoSocialAfter psAfter) {
         final String sql = "INSERT INTO PsychoSocialAfter (patient_id, pain_xpos, pain_ypos, familiy_xpos, familiy_ypos, work_xpos, work_ypos, finance_xpos, finance_ypos, event_xpos, event_ypos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         return jdbcTemplate.update(
@@ -195,6 +202,13 @@ public class PsychoSocialAccessService implements PsychoSocialDao {
     }
 
     @Override
+    public boolean existsPsychoScialAfter(int patient_id) {
+        String sql = "SELECT COUNT(*) FROM PsychoSocialAfter WHERE patient_id = ?";
+        Integer count = jdbcTemplate.queryForObject(sql, Integer.class, patient_id);
+        return count != null && count > 0;
+    }
+
+    @Override
     public int insertImprovementReason(ImprovementReason improvementReason) {
         final String sql = "INSERT INTO ImprovementReason (patient_id, drugs, exercises, awareness, other_reason, other_reason_text) VALUES (?, ?, ?, ?, ?, ?)";
         return jdbcTemplate.update(
@@ -265,5 +279,12 @@ public class PsychoSocialAccessService implements PsychoSocialDao {
                 improvementReason.isAwareness(),
                 improvementReason.isOther_reason(), improvementReason.getOther_reason_text(),
                 patient_id);
+    }
+
+    @Override
+    public boolean existsImprovementReason(int patient_id) {
+        String sql = "SELECT COUNT(*) FROM ImprovementReason WHERE patient_id = ?";
+        Integer count = jdbcTemplate.queryForObject(sql, Integer.class, patient_id);
+        return count != null && count > 0;
     }
 }

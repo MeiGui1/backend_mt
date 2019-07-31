@@ -40,6 +40,10 @@ public class PsychoSocialService {
         return psychoSocialDao.updatePsychoSocialBeforeByPatientId(id, newPsychoSocialBefore);
     }
 
+    public boolean existsPsychoSocialBefore(int id){
+        return psychoSocialDao.existsPsychoScialBefore(id);
+    }
+
 
 
 
@@ -64,7 +68,9 @@ public class PsychoSocialService {
         return psychoSocialDao.updatePsychoSocialAfterByPatientId(id, newPsychoSocialAfter);
     }
 
-
+    public boolean existsPsychoSocialAfter(int id){
+        return psychoSocialDao.existsPsychoScialAfter(id);
+    }
 
 
     public int addImprovementReason(ImprovementReason improvementReason){
@@ -87,6 +93,8 @@ public class PsychoSocialService {
         return psychoSocialDao.updateImprovementReasonByPatientId(id, newImprovementReason);
     }
 
-
+    public boolean existsImprovementReason(int id){
+        return psychoSocialDao.existsImprovementReason(id);
+    }
 
 }
