@@ -66,20 +66,24 @@ public class PsychoSocialAccessService implements PsychoSocialDao {
                 new RowMapper<PsychoSocialBefore>() {
                     @Override
                     public PsychoSocialBefore mapRow(ResultSet rs, int rowNumber) throws SQLException {
-                        PsychoSocialBefore selectedPsBefore = new PsychoSocialBefore(
-                                patient_id,
-                                rs.getInt("pain_xpos"),
-                                rs.getInt("pain_ypos"),
-                                rs.getInt("familiy_xpos"),
-                                rs.getInt("familiy_ypos"),
-                                rs.getInt("work_xpos"),
-                                rs.getInt("work_ypos"),
-                                rs.getInt("finance_xpos"),
-                                rs.getInt("finance_ypos"),
-                                rs.getInt("event_xpos"),
-                                rs.getInt("event_ypos")
-                        );
-                        return selectedPsBefore;
+                        if (!rs.isBeforeFirst()) {
+                            return null;
+                        } else {
+                            PsychoSocialBefore selectedPsBefore = new PsychoSocialBefore(
+                                    patient_id,
+                                    rs.getInt("pain_xpos"),
+                                    rs.getInt("pain_ypos"),
+                                    rs.getInt("familiy_xpos"),
+                                    rs.getInt("familiy_ypos"),
+                                    rs.getInt("work_xpos"),
+                                    rs.getInt("work_ypos"),
+                                    rs.getInt("finance_xpos"),
+                                    rs.getInt("finance_ypos"),
+                                    rs.getInt("event_xpos"),
+                                    rs.getInt("event_ypos")
+                            );
+                            return selectedPsBefore;
+                        }
                     }
                 });
     }
@@ -146,20 +150,24 @@ public class PsychoSocialAccessService implements PsychoSocialDao {
                 new RowMapper<PsychoSocialAfter>() {
                     @Override
                     public PsychoSocialAfter mapRow(ResultSet rs, int rowNumber) throws SQLException {
-                        PsychoSocialAfter selectedPsAfter = new PsychoSocialAfter(
-                                patient_id,
-                                rs.getInt("pain_xpos"),
-                                rs.getInt("pain_ypos"),
-                                rs.getInt("familiy_xpos"),
-                                rs.getInt("familiy_ypos"),
-                                rs.getInt("work_xpos"),
-                                rs.getInt("work_ypos"),
-                                rs.getInt("finance_xpos"),
-                                rs.getInt("finance_ypos"),
-                                rs.getInt("event_xpos"),
-                                rs.getInt("event_ypos")
-                                );
-                        return selectedPsAfter;
+                        if (!rs.isBeforeFirst() ) {
+                            return null;
+                        } else {
+                            PsychoSocialAfter selectedPsAfter = new PsychoSocialAfter(
+                                    patient_id,
+                                    rs.getInt("pain_xpos"),
+                                    rs.getInt("pain_ypos"),
+                                    rs.getInt("familiy_xpos"),
+                                    rs.getInt("familiy_ypos"),
+                                    rs.getInt("work_xpos"),
+                                    rs.getInt("work_ypos"),
+                                    rs.getInt("finance_xpos"),
+                                    rs.getInt("finance_ypos"),
+                                    rs.getInt("event_xpos"),
+                                    rs.getInt("event_ypos")
+                            );
+                            return selectedPsAfter;
+                        }
                     }
                 });
     }
@@ -221,15 +229,19 @@ public class PsychoSocialAccessService implements PsychoSocialDao {
                 new RowMapper<ImprovementReason>() {
                     @Override
                     public ImprovementReason mapRow(ResultSet rs, int rowNumber) throws SQLException {
-                        ImprovementReason selectedImprovementReason = new ImprovementReason(
-                                patient_id,
-                                rs.getBoolean("drugs"),
-                                rs.getBoolean("exercises"),
-                                rs.getBoolean("awareness"),
-                                rs.getBoolean("other_reason"),
-                                rs.getString("other_reason_text")
-                        );
-                        return selectedImprovementReason;
+                        if (!rs.isBeforeFirst() ) {
+                            return null;
+                        } else{
+                            ImprovementReason selectedImprovementReason = new ImprovementReason(
+                                    patient_id,
+                                    rs.getBoolean("drugs"),
+                                    rs.getBoolean("exercises"),
+                                    rs.getBoolean("awareness"),
+                                    rs.getBoolean("other_reason"),
+                                    rs.getString("other_reason_text")
+                            );
+                            return selectedImprovementReason;
+                        }
                     }
                 });
     }
