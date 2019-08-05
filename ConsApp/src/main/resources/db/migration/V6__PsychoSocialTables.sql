@@ -11,7 +11,7 @@ CREATE TABLE PsychoSocialBefore
     finance_ypos int NOT NULL,
     event_xpos   int NOT NULL,
     event_ypos   int NOT NULL,
-    FOREIGN KEY (patient_id) REFERENCES Patient (id)
+    FOREIGN KEY (patient_id) REFERENCES Patient (id) ON DELETE CASCADE
 );
 
 CREATE TABLE PsychoSocialAfter
@@ -27,7 +27,7 @@ CREATE TABLE PsychoSocialAfter
     finance_ypos int NOT NULL,
     event_xpos   int NOT NULL,
     event_ypos   int NOT NULL,
-    FOREIGN KEY (patient_id) REFERENCES Patient (id)
+    FOREIGN KEY (patient_id) REFERENCES Patient (id) ON DELETE CASCADE
 );
 
 CREATE TABLE ImprovementReason
@@ -38,6 +38,6 @@ CREATE TABLE ImprovementReason
     awareness boolean,
     other_reason boolean,
     other_reason_text text,
-    FOREIGN KEY (patient_id) REFERENCES Patient (id)
+    FOREIGN KEY (patient_id) REFERENCES Patient (id) ON DELETE CASCADE
 );
 

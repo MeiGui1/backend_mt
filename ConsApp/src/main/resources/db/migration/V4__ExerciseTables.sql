@@ -6,8 +6,8 @@
 CREATE TABLE PatientExercise (
     patient_id int NOT NULL,
     exercisetype_title text NOT NULL,
-    FOREIGN KEY (patient_id) REFERENCES Patient(id),
-    FOREIGN KEY (exercisetype_title) REFERENCES ExerciseType(title),
+    FOREIGN KEY (patient_id) REFERENCES Patient(id) ON DELETE CASCADE,
+    FOREIGN KEY (exercisetype_title) REFERENCES ExerciseType(title) ON DELETE CASCADE,
     UNIQUE (patient_id, exercisetype_title)
 );
 

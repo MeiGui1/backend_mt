@@ -9,8 +9,8 @@ CREATE TABLE PatientDrug (
     drugtype_id int NOT NULL,
     amount text,
     dosis char(4),
-    FOREIGN KEY (patient_id) REFERENCES Patient(id),
-    FOREIGN KEY (drugtype_id) REFERENCES DrugType(id),
+    FOREIGN KEY (patient_id) REFERENCES Patient(id) ON DELETE CASCADE,
+    FOREIGN KEY (drugtype_id) REFERENCES DrugType(id) ON DELETE CASCADE,
     UNIQUE (patient_id, drugtype_id)
 );
 

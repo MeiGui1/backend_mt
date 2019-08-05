@@ -9,8 +9,8 @@ CREATE TABLE PatientDiagnosis (
     patient_id int NOT NULL,
     diagnosistype_id int NOT NULL,
     comment text,
-    FOREIGN KEY (patient_id) REFERENCES Patient(id),
-    FOREIGN KEY (diagnosistype_id) REFERENCES DiagnosisType(id),
+    FOREIGN KEY (patient_id) REFERENCES Patient(id) ON DELETE CASCADE,
+    FOREIGN KEY (diagnosistype_id) REFERENCES DiagnosisType(id) ON DELETE CASCADE,
     UNIQUE (patient_id, diagnosistype_id)
 );
 
