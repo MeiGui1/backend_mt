@@ -156,4 +156,11 @@ public class DrugDataAccessService implements DrugDao{
         String sql = "UPDATE PatientDrug SET amount = ?, dosis = ? WHERE patient_id = ? AND drugtype_id = ?";
         return jdbcTemplate.update(sql, patientDrug.getAmount(), patientDrug.getDosis(), patient_id, drugtype_id);
     }
+
+    @Override
+    public int selectLastDrugId() {
+        String sql = "SELECT max(id) FROM DrugType";
+        int maxId = jdbcTemplate.queryForObject(sql, Integer.class);
+        return maxId;
+    }
 }

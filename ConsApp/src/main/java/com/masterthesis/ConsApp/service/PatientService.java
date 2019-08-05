@@ -39,6 +39,7 @@ public class PatientService {
         return patientDao.updatePatientById(id, newPatient);
     }
 
-
-
+    public int getLastNoteId() {
+        return patientDao.selectLastPatientId();
+    }
 }

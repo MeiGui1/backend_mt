@@ -17,7 +17,7 @@ public interface DrugDao {
     DrugType selectDrugTypeById(int id);
     int deleteDrugTypeById(int id);
     int updateDrugTypeById(int id, DrugType drugType);
-
+    int selectLastDrugId();
 
     /*DrugPatient table related functions*/
 

@@ -19,4 +19,5 @@ public interface PatientDao {
 
     int updatePatientById(int id, Patient patient);
 
+    int selectLastPatientId();
 }

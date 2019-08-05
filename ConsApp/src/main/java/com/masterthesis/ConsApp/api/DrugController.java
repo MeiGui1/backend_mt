@@ -50,8 +50,13 @@ public class DrugController {
         drugService.updateDrugType(id, drugType);
     }
 
+    @GetMapping(path = "/drugtype_last_id")
+    public int getLastPatientId(){
+        return drugService.getLastDrugId();
+    }
 
 
+    
     @PostMapping(path = "/patientdrug")
     public void addPatientDrug(@RequestBody PatientDrug patientDrug){
         drugService.addPatientDrug(patientDrug);
@@ -81,4 +86,6 @@ public class DrugController {
     public void updateDrugType(@PathVariable("patient_id") int patient_id, @PathVariable("drugtype_id") int drugtype_id, @Valid @NotNull @RequestBody PatientDrug patientDrug){
         drugService.updatePatientDrug(patient_id, drugtype_id, patientDrug);
     }
+
+
 }

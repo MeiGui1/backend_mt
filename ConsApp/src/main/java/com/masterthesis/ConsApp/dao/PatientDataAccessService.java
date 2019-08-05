@@ -78,4 +78,10 @@ public class PatientDataAccessService implements PatientDao{
         String sql = "UPDATE Patient SET shortname = ?, gender = ? WHERE id = ?";
         return jdbcTemplate.update(sql, patient.getShortname(), patient.getGender(), id);
     }
+
+    @Override
+    public int selectLastPatientId() {
+        String sql = "SELECT max(id) FROM Patient";
+        int maxId = jdbcTemplate.queryForObject(sql, Integer.class);
+        return maxId;    }
 }

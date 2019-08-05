@@ -48,4 +48,9 @@ public class PatientController {
     public void updatePatient(@PathVariable("id") int id, @Valid @NotNull @RequestBody Patient patientToUpdate){
         personService.updatePatient(id, patientToUpdate);
     }
+
+    @GetMapping(path = "/patient_last_id")
+    public int getLastPatientId(){
+        return personService.getLastNoteId();
+    }
 }

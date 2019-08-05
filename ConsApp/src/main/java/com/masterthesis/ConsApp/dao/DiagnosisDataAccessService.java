@@ -103,6 +103,13 @@ public class DiagnosisDataAccessService implements DiagnosisDao {
         return jdbcTemplate.update(sql, diagnosisType.getName(), diagnosisType.getType(), diagnosisType.getDescription(), id);
     }
 
+    @Override
+    public int getLastDiagnosisId() {
+        String sql = "SELECT max(id) FROM DiagnosisType";
+        int maxId = jdbcTemplate.queryForObject(sql, Integer.class);
+        return maxId;
+    }
+
 
     //PatientDiagnosis related
 

@@ -59,6 +59,11 @@ public class DiagnosisController {
         diagnosisService.updateDiagnosisType(id, diagnosisType);
     }
 
+    @GetMapping(path = "/diagnosistype_last_id")
+    public int getLastNoteId(){
+        return diagnosisService.getLastDiagnosisId();
+    }
+
 
 
     @PostMapping(path = "/patientdiagnosis")

@@ -77,4 +77,7 @@ public class DiagnosisService {
         return diagnosisDao.updatePatientDiagnosisByIds(patient_id, diagnosistype_id, patientDiagnosis);
     }
 
+    public int getLastDiagnosisId() {
+        return diagnosisDao.getLastDiagnosisId();
+    }
 }

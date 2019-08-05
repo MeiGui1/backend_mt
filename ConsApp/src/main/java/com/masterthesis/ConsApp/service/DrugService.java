@@ -69,4 +69,7 @@ public class DrugService {
         return drugDao.updatePatientDrugByIds(patient_id, drugtype_id, patientDrug);
     }
 
+    public int getLastDrugId() {
+        return drugDao.selectLastDrugId();
+    }
 }
