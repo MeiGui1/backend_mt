@@ -41,9 +41,9 @@ public class MediaController {
         return mediaService.getAllImagePathsOfPatient(patient_id);
     }
 
-    @DeleteMapping(path = "/patientimage/{patient_id}/{image_path}")
-    public void deleteImageTypeById(@PathVariable("patient_id") int patient_id, @PathVariable("image_path") String image_path){
-        mediaService.deletePatientImage(patient_id, image_path);
+    @DeleteMapping(path = "/patientimage")
+    public void deleteImageTypeById(@RequestBody PatientImage patientImage){
+        mediaService.deletePatientImage(patientImage.getPatient_id(), patientImage.getImage_path());
     }
 
 
