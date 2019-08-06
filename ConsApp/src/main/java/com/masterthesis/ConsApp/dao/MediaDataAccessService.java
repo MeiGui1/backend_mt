@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-@Repository("drugRepository")
+@Repository("mediaRepository")
 public class MediaDataAccessService implements MediaDao{
 
     private final JdbcTemplate jdbcTemplate;
