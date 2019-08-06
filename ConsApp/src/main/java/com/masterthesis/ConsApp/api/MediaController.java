@@ -64,9 +64,9 @@ public class MediaController {
         return mediaService.getAllVideoPathsOfPatient(patient_id);
     }
 
-    @DeleteMapping(path = "/patientvideo/{patient_id}/{video_path}")
-    public void deleteVideoTypeById(@PathVariable("patient_id") int patient_id, @PathVariable("video_path") String video_path){
-        mediaService.deletePatientVideo(patient_id, video_path);
+    @DeleteMapping(path = "/patientvideo")
+    public void deleteVideoTypeById(@RequestBody PatientVideo patientVideo){
+        mediaService.deletePatientVideo(patientVideo.getPatient_id(), patientVideo.getVideo_path());
     }
 
 
@@ -87,9 +87,9 @@ public class MediaController {
         return mediaService.getAllDocumentPathsOfPatient(patient_id);
     }
 
-    @DeleteMapping(path = "/patientdocument/{patient_id}/{document_path}")
-    public void deleteDocumentTypeById(@PathVariable("patient_id") int patient_id, @PathVariable("document_path") String document_path){
-        mediaService.deletePatientDocument(patient_id, document_path);
+    @DeleteMapping(path = "/patientdocument")
+    public void deleteDocumentTypeById(@RequestBody PatientDocument patientDocument){
+        mediaService.deletePatientDocument(patientDocument.getPatient_id(), patientDocument.getDocument_path());
     }
 
 
@@ -143,9 +143,9 @@ public class MediaController {
         return mediaService.getAllWebsiteIdsOfPatient(patient_id);
     }
 
-    @DeleteMapping(path = "/patientwebsite/{patient_id}/{website_id}")
-    public void deletePatientWebsiteByIds(@PathVariable("patient_id") int patient_id, @PathVariable("website_id") int website_id){
-        mediaService.deletePatientWebsite(patient_id, website_id);
+    @DeleteMapping(path = "/patientwebsite")
+    public void deletePatientWebsiteByIds(@RequestBody PatientWebsite patientWebsite){
+        mediaService.deletePatientWebsite(patientWebsite.getPatient_id(), patientWebsite.getWebsite_id());
     }
 
 }
