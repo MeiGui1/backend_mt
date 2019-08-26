@@ -38,7 +38,7 @@ INSERT INTO DiagnosisType (name, type, description) VALUES ('Nächtlicher Bruxis
 
 INSERT INTO DiagnosisType (name, type, description) VALUES ('Trigeminusneuralgie','Neurologisch',
                                                             'Starker Gesichtsschmerz - Schmerzattacken');
-INSERT INTO DiagnosisType (name, type, description) VALUES ('Schmerzhafte Trigeminusneuropathie','Neurologisch',
+INSERT INTO DiagnosisType (name, type, description) VALUES ('Periphere traumatische Trigeminusneuropathie','Neurologisch',
                                                             'Starker Gesichtsschmerz - Dauerschmerz');
 INSERT INTO DiagnosisType (name, type, description) VALUES ('Dentale Überempfindlichkeit','Neurologisch',
                                                             '');
